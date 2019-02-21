@@ -28,18 +28,31 @@ const config = {
             loader: 'url-loader',
             options: {
               limit: 8192,
+              name: 'assets/[hash].[ext]',
             },
           },
         ],
       },
       {
         test: /\.(svg|eot|ttf|woff|woff2)$/,
-        use: 'file-loader',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'assets/',
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      '@pages': path.join(__dirname, '/src/pages'),
+      '@components': path.join(__dirname, '/src/components'),
+      '@assets': path.join(__dirname, '/src/assets'),
+    },
   },
   plugins: [
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),

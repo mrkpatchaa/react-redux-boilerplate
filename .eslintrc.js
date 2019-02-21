@@ -1,4 +1,4 @@
-{
+module.exports = {
     "extends": [
         "airbnb",
         "standard",
@@ -43,5 +43,8 @@
             "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/*.setup.js", "webpack.config.js"]
         }]
 
+    },
+    settings: {
+        "import/resolver": "webpack"
     }
 }

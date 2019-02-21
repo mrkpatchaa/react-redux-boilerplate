@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
 
-import './assets/sass/styles.scss';
+import '@assets/sass/styles.scss';
 
 import store from './store';
 
