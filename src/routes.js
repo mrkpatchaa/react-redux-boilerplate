@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import AppLayout from '@pages/_Layout';
-import Home from '@pages/Home';
-import About from '@pages/About';
-import NotFound from '@pages/_NotFound';
+const AppLayout = lazy(() => import('@pages/_Layout'));
+const NotFound = lazy(() => import('@pages/_NotFound'));
+const Home = lazy(() => import('@pages/Home'));
+const About = lazy(() => import('@pages/About'));
 
 const MainRouter = () => {
   return (
     <Router>
-      <Switch>
-        <AppLayout exact path="/" component={Home} />
-        <AppLayout path="/about" component={About} />
-        <AppLayout component={NotFound} />
-      </Switch>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <AppLayout exact path="/" component={Home} />
+          <AppLayout path="/about" component={About} />
+          <AppLayout component={NotFound} />
+        </Switch>
+      </Suspense>
     </Router>
   );
 };
